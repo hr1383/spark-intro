@@ -1,0 +1,57 @@
+version: '3' 
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'root'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - my-db:/var/lib/mysql
+  zeppelin:
+    image: apache/zeppelin:0.8.2
+    container_name: zeppelin
+    volumes:
+      - ${PWD}/notebook:/notebook
+      - ${PWD}/logs:/logs
+      - ${PWD}/data:/learn
+      - ${PWD}/spark-2.4.5:/spark
+    environment:
+      - SPARK_HOME=/spark
+      - SPARK_SUBMIT_OPTIONS=--packages mysql:mysql-connector-java:5.1.25
+      - ZEPPELIN_LOG_DIR=/logs/
+      - ZEPPELIN_NOTEBOOK_DIR=/notebook
+      - ZEPPELIN_ADDR=0.0.0.0
+      - ZEPPELIN_SPARK_MAXRESULT=10000
+      - ZEPPELIN_INTERPRETER_OUTPUT_LIMIT=204800
+    healthcheck:
+      interval: 5s
+      retries: 10
+    ports:
+      - 8080:8080
+      - 4040:4040
+      - 4041:4041
+    # depends_on:
+    #   - db
+    networks:
+      - learnsql
+    hostname: "zeppelin"
+volumes:
+  my-db:
+
+networks:
+  learnsql:
+    external:
+      name: learnsql
