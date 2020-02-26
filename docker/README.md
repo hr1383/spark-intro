@@ -1,5 +1,3 @@
-## Workshop Material: Introduction to Machine Learning with Apache Spark and Redis
-
 
 ## Runtime Requirments
 1. Docker (at least 2 CPU cores and 8gb RAM)
@@ -8,7 +6,6 @@
 
 ### Technologies Used
 1. [Apache Zeppelin](https://zeppelin.apache.org/docs/latest/interpreter/spark.html)
-2. [Apache Spark](http://spark.apache.org/)
 3. [Mysql]
 
 #### Spark 2.4.5
