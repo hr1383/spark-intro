@@ -10,7 +10,6 @@
 
 #### Spark 2.4.5
 - http://mirror.metrocast.net/apache/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
-- (222 MB)
 
 
 ### Docker
