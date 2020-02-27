@@ -37,3 +37,5 @@ Additional Docker Resources:
 1. Go to http://localhost:8080/#/interpreter on your Web Browser
 2. Search for `spark` in the `Search Interpreters` input field.
 3. Click the `edit` button to initiate editing mode.
+
+You can now open the notebook http://localhost:8080/#/notebook/2F1C4AWJC and hit on the play button. I have divided the snippets into small chunks and have added comments for understanding. 
